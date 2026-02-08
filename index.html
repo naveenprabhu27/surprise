@@ -143,10 +143,53 @@ button{
     .cinematic .line{font-size:13.5px;}
     h2{font-size:18px;}
 }
+    /* BACKGROUND BLINKING HEARTS */
+.bg-hearts{
+    position:fixed;
+    inset:0;
+    z-index:0;
+    pointer-events:none;
+}
+
+.bg-hearts span{
+    position:absolute;
+    width:16px;
+    height:16px;
+    background:rgba(255,45,85,0.4);
+    transform:rotate(45deg);
+    animation:blink 3s ease-in-out infinite;
+}
+
+.bg-hearts span::before,
+.bg-hearts span::after{
+    content:'';
+    position:absolute;
+    width:16px;
+    height:16px;
+    background:rgba(255,45,85,0.4);
+    border-radius:50%;
+}
+
+.bg-hearts span::before{top:-8px;left:0;}
+.bg-hearts span::after{left:-8px;top:0;}
+
+@keyframes blink{
+    0%{opacity:0.1;transform:scale(0.6) rotate(45deg);}
+    50%{opacity:0.6;transform:scale(1) rotate(45deg);}
+    100%{opacity:0.1;transform:scale(0.6) rotate(45deg);}
+}
+
+/* MAKE SURE CONTENT IS ABOVE */
+.container{
+    position:relative;
+    z-index:2;
+}
+
 </style>
 </head>
 
 <body>
+<div class="bg-hearts"></div>
 
 <!-- LOCK -->
 <div class="container" id="lock">
@@ -239,9 +282,22 @@ function hearts(){
     }
 }
 </script>
+<script>
+const bg = document.querySelector('.bg-hearts');
+
+for(let i=0;i<30;i++){
+    const h=document.createElement('span');
+    h.style.left=Math.random()*100+'vw';
+    h.style.top=Math.random()*100+'vh';
+    h.style.animationDelay=Math.random()*3+'s';
+    h.style.animationDuration=(2+Math.random()*3)+'s';
+    bg.appendChild(h);
+}
+</script>
 
 </body>
 </html>
+
 
 
 
