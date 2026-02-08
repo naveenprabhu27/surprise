@@ -15,7 +15,7 @@
 
 body{
     min-height:100dvh; /* mobile safe */
-    background:url("background.jpg");
+    background:url("back.jpg");
      background-size: cover;      /* fills screen */
       background-position: center; /* keeps image centered */
       background-repeat: no-repeat;
@@ -32,18 +32,19 @@ body{
 .container{
     width:100%;
     max-width:360px;
-    background:#fff;
     color:#333;
     border-radius:16px;
     padding:20px;
     text-align:center;
     box-shadow:0 20px 40px rgba(0,0,0,0.4);
+   
 }
 
 h2{
     color:#c33764;
     margin-bottom:10px;
 }
+
 
 input{
     width:100%;
@@ -73,15 +74,34 @@ button{
 
 .hidden{display:none;}
 
-.message p{
+.cinematic .line{
+    opacity:0;
+    transform:translateY(14px);
+    transition:opacity 0.8s ease, transform 0.8s ease;
+    margin-top:10px;
     font-size:14px;
     line-height:1.7;
-    margin-top:10px;
 }
 
+.cinematic .line.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.cinematic .bold{
+    font-weight:600;
+}
+
+.cinematic .title{
+    font-size:15px;
+    font-weight:600;
+    margin-top:18px;
+}
+
+
 .photo{
-    width:100%;
-    aspect-ratio:16/10;
+    width:100% 100%;
+    aspect-ratio:5/10;
     border-radius:14px;
     margin-top:15px;
     background:#ddd;
@@ -90,6 +110,7 @@ button{
     opacity:0;
     transform:scale(0.9);
     transition:1s ease;
+    
 }
 
 .photo.show{
@@ -101,9 +122,9 @@ button{
     position:absolute;
     width:14px;
     height:14px;
-    background:red;
+    background:rgb(255, 0, 0);
     transform:rotate(45deg);
-    animation:float 5s linear infinite;
+    animation:float 10s linear infinite;
 }
 
 .heart::before,.heart::after{
@@ -111,7 +132,7 @@ button{
     position:absolute;
     width:14px;
     height:14px;
-    background:red;
+    background:rgb(255, 0, 0);
     border-radius:50%;
 }
 
@@ -166,6 +187,32 @@ button{
     100% { transform:translateX(50%) scale(1); }
 }
 
+
+.cinematic .line{
+    opacity:0;
+    transform:translateY(14px);
+    transition:opacity 0.8s ease, transform 0.8s ease;
+    margin-top:10px;
+    font-size:14px;
+    line-height:1.7;
+}
+
+.cinematic .line.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.cinematic .bold{
+    font-weight:600;
+}
+
+.cinematic .title{
+    font-size:15px;
+    font-weight:600;
+    margin-top:18px;
+}
+
+
 </style>
 
 </head>
@@ -179,37 +226,37 @@ button{
     <input type="password" id="pwd" placeholder="Tell me what you call me—there’s a surprise waiting">
     <button onclick="unlock()">Open</button>
     <div class="error" id="err"></div>
+    
+
 </div>
 
 <div class="container hidden" id="content">
     <h2>என் மகளுக்கு ❤️</h2>
 
-    <div class="message">
-        <p>
-            நீ என் வாழ்க்கைக்குள்ள வந்த நாள்ல,<br>
-            உலகம் நல்லதா மாறும்னு
-            நான் நம்ப ஆரம்பிச்சேன்.
-<br><br>
+   <div class="message cinematic">
+    <p class="line">நீ என் வாழ்க்கைக்குள்ள வந்த நாள்ல,</p>
+    <p class="line">உலகம் நல்லதா மாறும்னு நான் நம்ப ஆரம்பிச்சேன்.</p>
 
-           உனக்கு எதுவும் இல்லாம போகக்கூடாதுன்னு இல்ல…<br>
-            <b>அவள் முன்னாடி நான் சுவர்,<br>
-            அவள் பின்னாடி நான் நிழல்.</b><br><br>
+    <p class="line">உனக்கு எதுவும் இல்லாம போகக்கூடாதுன்னு இல்ல…</p>
+    <p class="line bold">அவள் முன்னாடி நான் சுவர், அவள் பின்னாடி நான் நிழல்.</p>
 
-            நீ விழுந்தா தூக்கிடுற கை ஆகணும்னு இல்ல—<br>
-            <b>நீ விழாம நிக்குற தைரியமா இருக்கணும்னு தான் ஆசை.</b></br>
-            <h3>👉நீ பெரியவளா ஆனா ஒரு நாள்,</h3>
-               உலகம் உன்னை புரிஞ்சுக்காம போகலாம்…
-                அப்போ நினைச்சுக்கோ
-                  உன்னை முழுசா புரிஞ்ச ஒரே மனசு,
-                    எப்போதும் எங்கே இருந்தாலும், உனக்காக காத்திருக்கிறேன் என்பதைக் நினைவில் வைத்துக்கொள்...
-        </p>
-    </div>
+    <p class="line">நீ விழுந்தா தூக்கிடுற கை ஆகணும்னு இல்ல—</p>
+    <p class="line bold">நீ விழாம நிக்குற தைரியமா இருக்கணும்னு தான் ஆசை.</p>
+
+    <p class="line title">👉 நீ பெரியவளா ஆனா ஒரு நாள்,</p>
+    <p class="line">உலகம் உன்னை புரிஞ்சுக்காம போகலாம்…</p>
+    <p class="line">அப்போ நினைச்சுக்கோ</p>
+    <p class="line">உன்னை முழுசா புரிஞ்ச ஒரே மனசு,</p>
+    <p class="line">எப்போதும் எங்கே இருந்தாலும்,</p>
+    <p class="line">உனக்காக காத்திருக்கிறேன்.</p>
+</div>
+
 
     <div class="photo" id="photo"
          style="background-image:url('ponnu.png');"></div>
 
-    <p style="margin-top:12px;font-size:13px;color:#555;">
-       <h4>Happy Valentine’s Day 😘<br>
+    <p style="margin-top:12px;font-size:13px;color:#ff0000;">
+        <h4>Happy Valentine’s Day 😘<br>
         எப்போதும் உனக்காக…</h4>
     </p>
 </div>
@@ -226,6 +273,8 @@ function unlock(){
         const music=document.getElementById('bgm');
         music.volume=0.6;
         music.play();
+        revealLines();
+
 
         setTimeout(()=>{
             document.getElementById('photo').classList.add('show');
@@ -248,7 +297,22 @@ function hearts(){
     }
 }
 
+
+
+
 </script>
+
+<script>
+function revealLines(){
+    const lines=document.querySelectorAll('.cinematic .line');
+    lines.forEach((line,index)=>{
+        setTimeout(()=>{
+            line.classList.add('show');
+        }, index * 1200); // timing = emotion
+    });
+}
+</script>
+
 
 <audio id="bgm" loop>
   <source src="videoplayback.m4a" type="audio/mpeg">
@@ -257,4 +321,3 @@ function hearts(){
 
 </body>
 </html>
-
