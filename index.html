@@ -14,30 +14,25 @@
 }
 
 body{
-    min-height:100dvh; /* mobile safe */
-    background:url("back.jpg");
-     background-size: cover;      /* fills screen */
-      background-position: center; /* keeps image centered */
-      background-repeat: no-repeat;
-      margin: 0;
-      height: 100vh;
+    min-height:100dvh;
+    background:url("back.jpg") center / cover no-repeat;
     display:flex;
     align-items:center;
     justify-content:center;
-    color:#fff;
+    padding:12px;
     overflow:hidden;
-    padding:15px;
 }
 
+/* CARD */
 .container{
     width:100%;
-    max-width:360px;
+    max-width:380px;
+    background:rgba(255,255,255,0.92);
     color:#333;
-    border-radius:16px;
-    padding:20px;
+    border-radius:18px;
+    padding:18px 16px;
     text-align:center;
-    box-shadow:0 20px 40px rgba(0,0,0,0.4);
-   
+    box-shadow:0 20px 40px rgba(0,0,0,0.35);
 }
 
 h2{
@@ -45,7 +40,7 @@ h2{
     margin-bottom:10px;
 }
 
-
+/* INPUT + BUTTON */
 input{
     width:100%;
     padding:12px;
@@ -57,7 +52,8 @@ input{
 
 button{
     margin-top:14px;
-    padding:12px 24px;
+    padding:12px;
+    width:100%;
     border:none;
     border-radius:24px;
     background:#c33764;
@@ -74,6 +70,7 @@ button{
 
 .hidden{display:none;}
 
+/* CINEMATIC TEXT */
 .cinematic .line{
     opacity:0;
     transform:translateY(14px);
@@ -88,29 +85,24 @@ button{
     transform:translateY(0);
 }
 
-.cinematic .bold{
-    font-weight:600;
-}
-
+.cinematic .bold{font-weight:600;}
 .cinematic .title{
     font-size:15px;
     font-weight:600;
     margin-top:18px;
 }
 
-
+/* PHOTO */
 .photo{
-    width:100% 100%;
-    aspect-ratio:5/10;
+    width:100%;
+    aspect-ratio:3/4;
     border-radius:14px;
-    margin-top:15px;
-    background:#ddd;
+    margin-top:14px;
     background-size:cover;
     background-position:center;
     opacity:0;
-    transform:scale(0.9);
+    transform:scale(0.94);
     transition:1s ease;
-    
 }
 
 .photo.show{
@@ -118,21 +110,25 @@ button{
     transform:scale(1);
 }
 
+/* HEART FLOAT */
 .heart{
-    position:absolute;
+    position:fixed;
+    bottom:-20px;
     width:14px;
     height:14px;
-    background:rgb(255, 0, 0);
+    background:red;
     transform:rotate(45deg);
-    animation:float 10s linear infinite;
+    animation:float 6s linear infinite;
+    pointer-events:none;
 }
 
-.heart::before,.heart::after{
+.heart::before,
+.heart::after{
     content:'';
     position:absolute;
     width:14px;
     height:14px;
-    background:rgb(255, 0, 0);
+    background:red;
     border-radius:50%;
 }
 
@@ -140,141 +136,80 @@ button{
 .heart::after{left:-7px;top:0;}
 
 @keyframes float{
-    from{bottom:-20px;opacity:1;}
-    to{bottom:110%;opacity:0;}
+    from{transform:translateY(0) rotate(45deg);opacity:1;}
+    to{transform:translateY(-120vh) rotate(45deg);opacity:0;}
 }
 
-
-.heartbeat{
-    position:fixed;
-    bottom:40px;
-    right:50%;
-    transform:translateX(50%) scale(1);
-    width:26px;
-    height:26px;
-    background:#ff2d55;
-    rotate:45deg;
-    animation:beat 1s infinite;
-    z-index:999;
+/* SMALL PHONES */
+@media (max-width:420px){
+    .cinematic .line{font-size:13.5px;}
+    h2{font-size:18px;}
 }
-
-.heartbeat::before,
-.heartbeat::after{
-    content:'';
-    position:absolute;
-    width:26px;
-    height:26px;
-    background:#ff2d55;
-    border-radius:50%;
-}
-
-.heartbeat::before{
-    top:-13px;
-    left:0;
-}
-
-.heartbeat::after{
-    left:-13px;
-    top:0;
-}
-
-@keyframes beat{
-    0%   { transform:translateX(50%) scale(1); }
-    14%  { transform:translateX(50%) scale(1.3); }
-    28%  { transform:translateX(50%) scale(1); }
-    42%  { transform:translateX(50%) scale(1.25); }
-    70%  { transform:translateX(50%) scale(1); }
-    100% { transform:translateX(50%) scale(1); }
-}
-
-
-.cinematic .line{
-    opacity:0;
-    transform:translateY(14px);
-    transition:opacity 0.8s ease, transform 0.8s ease;
-    margin-top:10px;
-    font-size:14px;
-    line-height:1.7;
-}
-
-.cinematic .line.show{
-    opacity:1;
-    transform:translateY(0);
-}
-
-.cinematic .bold{
-    font-weight:600;
-}
-
-.cinematic .title{
-    font-size:15px;
-    font-weight:600;
-    margin-top:18px;
-}
-
-
 </style>
-
 </head>
 
 <body>
 
+<!-- LOCK -->
 <div class="container" id="lock">
     <h2>🔐 A Little Lock</h2>
     <p>This page isn’t meant for everyone…<br>it’s meant for you.</p>
 
-    <input type="password" id="pwd" placeholder="Tell me what you call me—there’s a surprise waiting">
+    <input type="password" id="pwd" placeholder="Tell me what you call me">
     <button onclick="unlock()">Open</button>
     <div class="error" id="err"></div>
-    
-
 </div>
 
+<!-- CONTENT -->
 <div class="container hidden" id="content">
     <h2>என் மகளுக்கு ❤️</h2>
 
-   <div class="message cinematic">
-    <p class="line">நீ என் வாழ்க்கைக்குள்ள வந்த நாள்ல,</p>
-    <p class="line">உலகம் நல்லதா மாறும்னு நான் நம்ப ஆரம்பிச்சேன்.</p>
+    <div class="message cinematic">
+        <p class="line">நீ என் வாழ்க்கைக்குள்ள வந்த நாள்ல,</p>
+        <p class="line">உலகம் நல்லதா மாறும்னு நான் நம்ப ஆரம்பிச்சேன்.</p>
 
-    <p class="line">உனக்கு எதுவும் இல்லாம போகக்கூடாதுன்னு இல்ல…</p>
-    <p class="line bold">அவள் முன்னாடி நான் சுவர், அவள் பின்னாடி நான் நிழல்.</p>
+        <p class="line">உனக்கு எதுவும் இல்லாம போகக்கூடாதுன்னு இல்ல…</p>
+        <p class="line bold">அவள் முன்னாடி நான் சுவர், அவள் பின்னாடி நான் நிழல்.</p>
 
-    <p class="line">நீ விழுந்தா தூக்கிடுற கை ஆகணும்னு இல்ல—</p>
-    <p class="line bold">நீ விழாம நிக்குற தைரியமா இருக்கணும்னு தான் ஆசை.</p>
+        <p class="line">நீ விழுந்தா தூக்கிடுற கை ஆகணும்னு இல்ல—</p>
+        <p class="line bold">நீ விழாம நிக்குற தைரியமா இருக்கணும்னு தான் ஆசை.</p>
 
-    <p class="line title">👉 நீ பெரியவளா ஆனா ஒரு நாள்,</p>
-    <p class="line">உலகம் உன்னை புரிஞ்சுக்காம போகலாம்…</p>
-    <p class="line">அப்போ நினைச்சுக்கோ</p>
-    <p class="line">உன்னை முழுசா புரிஞ்ச ஒரே மனசு,</p>
-    <p class="line">எப்போதும் எங்கே இருந்தாலும்,</p>
-    <p class="line">உனக்காக காத்திருக்கிறேன்.</p>
-</div>
-
+        <p class="line title">👉 நீ பெரியவளா ஆனா ஒரு நாள்,</p>
+        <p class="line">உலகம் உன்னை புரிஞ்சுக்காம போகலாம்…</p>
+        <p class="line">அப்போ நினைச்சுக்கோ</p>
+        <p class="line">உன்னை முழுசா புரிஞ்ச ஒரே மனசு,</p>
+        <p class="line">எப்போதும் எங்கே இருந்தாலும்,</p>
+        <p class="line">உனக்காக காத்திருக்கிறேன்.</p>
+    </div>
 
     <div class="photo" id="photo"
          style="background-image:url('ponnu.png');"></div>
 
-    <p style="margin-top:12px;font-size:13px;color:#ff0000;">
-        <h4>Happy Valentine’s Day 😘<br>
-        எப்போதும் உனக்காக…</h4>
+    <p style="margin-top:12px;font-size:13px;color:#c33764;">
+        <strong>Happy Valentine’s Day 😘</strong><br>
+        எப்போதும் உனக்காக…
     </p>
 </div>
+
+<audio id="bgm" loop>
+    <source src="videoplayback.m4a" type="audio/mpeg">
+</audio>
 
 <script>
 const PASSWORD="appa";
 
 function unlock(){
     const p=document.getElementById('pwd').value;
+
     if(p===PASSWORD){
         document.getElementById('lock').classList.add('hidden');
         document.getElementById('content').classList.remove('hidden');
 
+        revealLines();
+
         const music=document.getElementById('bgm');
         music.volume=0.6;
         music.play();
-        revealLines();
-
 
         setTimeout(()=>{
             document.getElementById('photo').classList.add('show');
@@ -286,38 +221,26 @@ function unlock(){
     }
 }
 
-function hearts(){
-    for(let i=0;i<20;i++){
-        let h=document.createElement('div');
-        h.className='heart';
-        h.style.left=Math.random()*100+'vw';
-        h.style.animationDuration=(3+Math.random()*3)+'s';
-        document.body.appendChild(h);
-        setTimeout(()=>h.remove(),5000);
-    }
-}
-
-
-
-
-</script>
-
-<script>
 function revealLines(){
     const lines=document.querySelectorAll('.cinematic .line');
     lines.forEach((line,index)=>{
         setTimeout(()=>{
             line.classList.add('show');
-        }, index * 1200); // timing = emotion
+        }, index * 1200);
     });
 }
+
+function hearts(){
+    for(let i=0;i<20;i++){
+        let h=document.createElement('div');
+        h.className='heart';
+        h.style.left=Math.random()*100+'vw';
+        h.style.animationDuration=(4+Math.random()*4)+'s';
+        document.body.appendChild(h);
+        setTimeout(()=>h.remove(),8000);
+    }
+}
 </script>
-
-
-<audio id="bgm" loop>
-  <source src="videoplayback.m4a" type="audio/mpeg">
-</audio>
-
 
 </body>
 </html>
